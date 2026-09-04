@@ -1,0 +1,12 @@
+# AEGIS-OCEAN - Core API
+fastapi
+uvicorn
+pydantic
+
+# Vectorized Math & Data Science
+numpy
+pandas
+scipy
+
+# Spatial Indexing (Strictly v4+)
+h3>=4.5.0

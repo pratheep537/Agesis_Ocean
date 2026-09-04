@@ -1,0 +1,25 @@
+# Python Virtual Environments
+.venv/
+venv/
+env/
+
+# Byte-compiled / Optimized files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment Variables & Secrets (CRITICAL)
+.env
+.env.local
+*.pem
+
+# IDE / Editor folders
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Jupyter Notebook checkpoints (if Vimal tests data here)
+.ipynb_checkpoints/
