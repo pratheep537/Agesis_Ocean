@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  --color-radar-blue: #00d4ff;
+  --color-neon-green: #39ff14;
+  --color-alert-red: #ff003c;
+  --color-slate-950: #020617;
+  --color-slate-900: #0f172a;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-slate-950);
+  color: white;
+  overflow: hidden; /* Prevent scrolling, strict split-screen */
+}
+
+/* Mapbox specific styles if needed */
+.mapboxgl-popup-content {
+  background: var(--color-slate-900) !important;
+  color: white !important;
+  border: 1px solid var(--color-radar-blue);
+  border-radius: 4px;
+}

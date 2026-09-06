@@ -1,0 +1,35 @@
+# =========================
+# AEGIS-OCEAN: Master Ignore
+# =========================
+
+# --- Operating System ---
+.DS_Store
+Thumbs.db
+*.swp
+
+# --- Environment Variables ---
+.env
+.env.local
+
+# =========================
+# LAYER 1: BACKEND (PYTHON)
+# =========================
+backend/venv/
+backend/env/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Ignore massive AI Model Weights & Datasets
+backend/ml/weights/*.pth
+backend/ml/weights/*.pt
+backend/media/spills/
+
+# =========================
+# LAYER 2: FRONTEND (NODE)
+# =========================
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/npm-debug.log*
