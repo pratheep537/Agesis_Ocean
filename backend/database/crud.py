@@ -1,16 +1,10 @@
-from database.connection import pg_pool, ch_client
+from database import connection
 
 async def log_guilty_vessel(guilty_ship: dict):
     """
     Securely writes the flagged suspect vessel into the PostgreSQL PostGIS Vault.
     """
-    global pg_pool
-    if not pg_pool:
-        # Fallback safeguard if connection pool reference is missing
-        from database.connection import pg_pool as current_pool
-        pool_to_use = current_pool
-    else:
-        pool_to_use = pg_pool
+    pool_to_use = connection.pg_pool
 
     if not pool_to_use:
         print("[ERROR] 🔴 Cannot log vessel: PostgreSQL pool is uninitialized.")
@@ -37,7 +31,7 @@ def blast_telemetry_to_clickhouse(ais_entries: list):
     """
     Blasts raw AIS telemetry batches into ClickHouse Data Lake at high velocity.
     """
-    if not ch_client or not ais_entries:
+    if not connection.ch_client or not ais_entries:
         return
     
     try:
@@ -52,6 +46,6 @@ def blast_telemetry_to_clickhouse(ais_entries: list):
             )
             for e in ais_entries
         ]
-        ch_client.insert('raw_ais_telemetry', data_rows, column_names=['mmsi', 'timestamp', 'lat', 'lon', 'sog', 'cog'])
+        connection.ch_client.insert('raw_ais_telemetry', data_rows, column_names=['mmsi', 'timestamp', 'lat', 'lon', 'sog', 'cog'])
     except Exception as e:
         print(f"[ERROR] 🔴 ClickHouse ingestion error: {e}")

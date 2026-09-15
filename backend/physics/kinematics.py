@@ -3,6 +3,12 @@ import pandas as pd
 import h3
 import time
 
+def _lat_lng_to_cell(lat: float, lon: float, resolution: int) -> str:
+    """Support both the H3 v3 and v4 Python APIs."""
+    if hasattr(h3, "latlng_to_cell"):
+        return h3.latlng_to_cell(lat, lon, resolution)
+    return h3.geo_to_h3(lat, lon, resolution)
+
 def execute_h3_triage(sde_payload: dict, ais_entries: list) -> dict:
     """
     High-Performance O(1) H3 Spatial Hashing & PCA Kinematics Engine.
@@ -53,10 +59,10 @@ def execute_h3_triage(sde_payload: dict, ais_entries: list) -> dict:
 
     # 3. O(1) H3 Spatial Hashing Intersection via C-Bindings
     # Build target H3 set from the SDE particle cloud
-    h3_search_set = {h3.geo_to_h3(float(p[0]), float(p[1]), resolution=7) for p in particles}
+    h3_search_set = {_lat_lng_to_cell(float(p[0]), float(p[1]), 7) for p in particles}
     
     # Map candidate cells using an optimized list comprehension
-    cand_cells = [h3.geo_to_h3(float(lat), float(lon), resolution=7) for lat, lon in zip(c_lats, c_lons)]
+    cand_cells = [_lat_lng_to_cell(float(lat), float(lon), 7) for lat, lon in zip(c_lats, c_lons)]
     
     # Boolean mask for exact H3 hexagon containment
     h3_mask = np.array([cell in h3_search_set for cell in cand_cells], dtype=bool)
