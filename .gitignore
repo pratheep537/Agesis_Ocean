@@ -2,16 +2,24 @@
 .venv/
 venv/
 env/
+ENV/
 
 # Byte-compiled / Optimized files
 __pycache__/
 *.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.log
 *$py.class
 
 # Environment Variables & Secrets (CRITICAL)
 .env
 .env.local
 *.pem
+
+# Keep the project private env file tracked for this repo
+!backend/.env
 
 # IDE / Editor folders
 .vscode/
@@ -21,5 +29,16 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-# Jupyter Notebook checkpoints (if Vimal tests data here)
+# Jupyter Notebook checkpoints
 .ipynb_checkpoints/
+
+# Project runtime data
+backend/media/
+backend/data/*.parquet
+backend/data/*.csv
+backend/data/*.json
+
+# Local databases / temp files
+*.sqlite3
+*.db
+*.tmp

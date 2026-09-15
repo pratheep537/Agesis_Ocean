@@ -1,0 +1,17 @@
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+
+# Keep the private environment config tracked
+!.env
+
+# Aegis Ocean Ephemeral Storage
+media/
+
+# OS / IDE Files
+.DS_Store
+.idea/
+.vscode/
