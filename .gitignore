@@ -18,6 +18,9 @@ __pycache__/
 .env.local
 *.pem
 
+# Keep the project private env file tracked for this repo
+!backend/.env
+
 # IDE / Editor folders
 .vscode/
 .idea/
@@ -39,6 +42,3 @@ backend/data/*.json
 *.sqlite3
 *.db
 *.tmp
-
-# Keep the repo's private local env file tracked for this project
-!backend/.env
